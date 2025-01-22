@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\ChatMessage;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -16,7 +17,7 @@ class MessageList extends Component
     {
         $this->user = $user;
         $this->getListMessages();
-        $this->currentUserId = auth()->id();
+        $this->currentUserId = Auth::user()->id;
     }
     public function render()
     {

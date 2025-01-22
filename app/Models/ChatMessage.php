@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ChatMessage extends Model
 {
@@ -26,14 +27,16 @@ class ChatMessage extends Model
 
     public function list(User $user)
     {
+        $loggedUserId = Auth::user()->id;
+
         return ChatMessage::query()
-            ->where(function ($query) use ($user) {
-                $query->where('sender_id', auth()->id())
+            ->where(function ($query) use ($user, $loggedUserId) {
+                $query->where('sender_id', $loggedUserId)
                     ->where('receiver_id', $user->id);
             })
-            ->orWhere(function ($query) use ($user) {
+            ->orWhere(function ($query) use ($user, $loggedUserId) {
                 $query->where('sender_id', $user->id)
-                    ->where('receiver_id', auth()->id());
+                    ->where('receiver_id', $loggedUserId);
             })
             ->with(['sender', 'receiver'])
             ->orderBy('created_at', 'asc')

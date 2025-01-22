@@ -6,6 +6,7 @@ use App\Events\MessageSent;
 use App\Models\ChatMessage;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatMessageController extends Controller
 {
@@ -14,9 +15,9 @@ class ChatMessageController extends Controller
      */
     public function index()
     {
-        $users = User::whereNot('id', auth()->id())->get();
+        $loggedUserId = Auth::user()->id;
+        $users = User::whereNot('id', $loggedUserId)->get();
 
-        // dd($users);
         return view('dashboard', ['users' => $users]);
     }
 
@@ -43,9 +44,10 @@ class ChatMessageController extends Controller
      */
     public function store(Request $request)
     {
+        $loggedUserId = Auth::user()->id;
         $message = new ChatMessage();
 
-        $message->sender_id = auth()->id();
+        $message->sender_id = $loggedUserId;
         $message->receiver_id = $request->receiver_id;
         $message->text_content = $request->text_content;
         $message->save();

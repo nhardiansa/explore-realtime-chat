@@ -36,7 +36,7 @@
     @endforeach
 </div>
 
-<script>
+{{-- <script>
     window.addEventListener("load", (event) => {
         const wireId = document.querySelector('#chat-wrapper').getAttribute('wire:id');
         const messageListComponent = Livewire.find(wireId);
@@ -47,4 +47,4 @@
         //         messageListComponent.call('getListMessages');
         //     });
         })
-</script>
+</script> --}}

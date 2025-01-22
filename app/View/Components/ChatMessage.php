@@ -13,14 +13,14 @@ class ChatMessage extends Component
      */
 
     public $name;
-    public $text_content;
-    public $is_receiver = false;
+    public $textContent;
+    public $isReceiver = false;
 
-    public function __construct($name, $text_content, $is_receiver)
+    public function __construct($name, $textContent, $isReceiver)
     {
         $this->name = $name;
-        $this->text_content = $text_content;
-        $this->is_receiver = $is_receiver;
+        $this->textContent = $textContent;
+        $this->isReceiver = $isReceiver;
     }
 
     /**
