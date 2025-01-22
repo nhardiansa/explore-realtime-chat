@@ -42,9 +42,9 @@
         const messageListComponent = Livewire.find(wireId);
         const currentUserId = @json($currentUserId);
 
-        window.Echo.private(`chat.${currentUserId}`)
-            .listen('MessageSent', (e) => {
-                messageListComponent.call('getListMessages');
-            });
+        // window.Echo.private(`chat.${currentUserId}`)
+        //     .listen('MessageSent', (e) => {
+        //         messageListComponent.call('getListMessages');
+        //     });
         })
 </script>

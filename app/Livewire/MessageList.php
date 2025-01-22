@@ -34,7 +34,7 @@ class MessageList extends Component
     public function getListeners()
     {
         return [
-            "echo:chat.{$this->currentUserId}:MessageSent" => "getListMessages"
+            "echo-private:chat.{$this->currentUserId}:MessageSent" => "getListMessages"
         ];
     }
 }
